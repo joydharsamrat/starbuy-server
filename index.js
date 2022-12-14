@@ -39,6 +39,12 @@ async function run() {
 
         // Products api 
 
+        app.get('/latestProducts', async (req, res) => {
+            const query = { status: 'unsold' }
+            const result = await productsCollection.find(query).limit(9)
+            res.send(result)
+        })
+
         app.get('/myOrders', async (req, res) => {
             const email = req.query.email;
             const query = { buyer: email }
