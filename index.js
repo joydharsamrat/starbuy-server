@@ -41,7 +41,7 @@ async function run() {
 
         app.get('/latestProducts', async (req, res) => {
             const query = { status: 'unsold' }
-            const result = await productsCollection.find(query).limit(9)
+            const result = await productsCollection.find(query).limit(9).toArray()
             res.send(result)
         })
 
