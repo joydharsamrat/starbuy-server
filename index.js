@@ -52,9 +52,10 @@ async function run() {
             res.send(result)
         })
 
-        app.put('/products/:id', async (req, res) => {
-            const id = req.params.id;
+        app.put('/products', async (req, res) => {
+            const id = req.body.id;
             const buyer = req.body.buyer;
+            console.log(id)
             const query = { _id: ObjectId(id) }
             const updateDoc = {
                 $set: {
