@@ -42,7 +42,7 @@ async function run() {
         app.get('/latestProducts', async (req, res) => {
             const query = { status: 'unsold' }
             const options = { sort: { created_at: -1 } }
-            const result = await productsCollection.find(query, options).limit(9).toArray()
+            const result = await productsCollection.find(query, options).limit(6).toArray()
             res.send(result)
         })
 
