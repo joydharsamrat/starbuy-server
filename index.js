@@ -41,7 +41,8 @@ async function run() {
 
         app.get('/latestProducts', async (req, res) => {
             const query = { status: 'unsold' }
-            const result = await productsCollection.find(query).limit(9).toArray()
+            const options = { sort: { created_at: -1 } }
+            const result = await productsCollection.find(query, options).limit(9).toArray()
             res.send(result)
         })
 
@@ -83,6 +84,7 @@ async function run() {
 
         app.post('/products', async (req, res) => {
             const product = req.body;
+            req.body.created_at = new Date();
             const result = await productsCollection.insertOne(product)
             res.send(result)
         })
